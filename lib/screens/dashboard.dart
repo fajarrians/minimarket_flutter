@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimarket/theme/color.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -11,7 +12,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('s'),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Beranda',
+          style: TextStyle(
+            color: ThemeColors().textWhite,
+          ),
+        ),
+        backgroundColor: ThemeColors().backgroundBlue,
+      ),
     );
   }
 }

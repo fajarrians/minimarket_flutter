@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: ThemeColors().blue1,
+      backgroundColor: ThemeColors().backgroundWhite,
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -64,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
                     fontSize: 34,
+                    color: ThemeColors().textBlack,
                   ),
                 ),
               ],
@@ -76,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 28,
+                color: ThemeColors().textBlack,
               ),
             ),
             Text(
@@ -146,17 +148,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: _isLoading
                           ? SizedBox(
                               child: CircularProgressIndicator(
-                                color: Colors.white,
+                                color: ThemeColors().textWhite,
                               ),
                               height: 18,
                               width: 18,
                             )
-                          : Text('Login'),
+                          : Text(
+                              'Login',
+                              style: TextStyle(
+                                color: ThemeColors().textWhite,
+                              ),
+                            ),
                       // child: Text(
                       //   _isLoading ? 'Proccessing..' : 'Login',
                       // ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: ThemeColors().blue4,
+                        backgroundColor: ThemeColors().backgroundBlue,
                       ),
                     ),
                   ),

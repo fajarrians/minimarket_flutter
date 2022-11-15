@@ -29,29 +29,27 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: _widgetOptions.elementAt(_selectedNavbar),
-      ),
+      body: _widgetOptions.elementAt(_selectedNavbar),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_rounded),
             label: 'Beranda',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
+            icon: Icon(Icons.assignment_rounded),
             label: 'Laporan',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person_rounded),
             label: 'Akun',
           ),
         ],
         currentIndex: _selectedNavbar,
-        selectedItemColor: ThemeColors().blue4,
+        selectedItemColor: ThemeColors().backgroundBlue,
         unselectedItemColor: ThemeColors().textGrey,
-        showUnselectedLabels: true,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         onTap: _changeSelectedNavBar,
       ),
     );

@@ -39,31 +39,44 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        SizedBox(
-          height: 40,
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              logout();
-            },
-            child: _isLoading
-                ? SizedBox(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                    height: 18,
-                    width: 18,
-                  )
-                : Text('Logout'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: ThemeColors().blue4,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Akun',
+            style: TextStyle(
+              color: ThemeColors().textWhite,
             ),
           ),
+          backgroundColor: ThemeColors().backgroundBlue,
         ),
-      ],
-    ));
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    logout();
+                  },
+                  child: _isLoading
+                      ? SizedBox(
+                          child: CircularProgressIndicator(
+                            color: ThemeColors().textWhite,
+                          ),
+                          height: 18,
+                          width: 18,
+                        )
+                      : Text('Logout'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ThemeColors().backgroundBlue,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 
   void logout() async {
