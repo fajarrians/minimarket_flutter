@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:minimarket/layouts/bottomNav.dart';
 import 'package:minimarket/screens/report.dart';
 import 'package:minimarket/theme/color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,28 @@ class _ChangeDateReportScreenState extends State<ChangeDateReportScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
+
+// @override
+// void initState() {
+//   super.initState();
+//   _dataDateOld();
+// }
+
+//   _dataDateOld() async {
+//     final localStorage = await SharedPreferences.getInstance();
+//     setState(() {
+//       startDate = localStorage.getString('start_date');
+//       if (startDate == null) {
+//         DateTime date_now = DateTime.now();
+//         startDate = date_now.toString();
+//       }
+//       endDate = localStorage.getString('end_date');
+//       if (endDate == null) {
+//         DateTime date_now = DateTime.now();
+//         endDate = date_now.toString();
+//       }
+//     });
+//   }
 
   _showMsg(msg) {
     final snackBar = SnackBar(
@@ -169,10 +192,10 @@ class _ChangeDateReportScreenState extends State<ChangeDateReportScreen> {
     Future.delayed(
         Duration(seconds: 2),
         () => [
-              Navigator.pop(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ReportScreen(),
+                  builder: (context) => BottomNav(),
                 ),
               ),
               _showMsg('Tanggal berhasil disimpan')

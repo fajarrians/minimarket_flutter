@@ -17,8 +17,8 @@ class ReportScreen extends StatefulWidget {
 
 class _ReportScreenState extends State<ReportScreen> {
   var company_id;
-  String start_date = DateTime.now().toString();
-  String end_date = DateTime.now().toString();
+  String? start_date = DateTime.now().toString();
+  String? end_date = DateTime.now().toString();
   int expenditure_total = 0;
   int discount_total = 0;
   int sales_subtotal = 0;
@@ -27,6 +27,8 @@ class _ReportScreenState extends State<ReportScreen> {
   int sales_ovo_subtotal = 0;
   int sales_shopeepay_subtotal = 0;
   int profit = 0;
+  var salesInvoiceItem = [];
+  var data_expenditure = [];
 
   @override
   void initState() {
@@ -39,13 +41,13 @@ class _ReportScreenState extends State<ReportScreen> {
     var user = jsonDecode(localStorage.getString('data')!);
     setState(() {
       company_id = user['company_id'];
-      start_date = localStorage.getString('start_date')!;
+      start_date = localStorage.getString('start_date');
       if (start_date == null) {
         DateTime date_now = DateTime.now();
         start_date = date_now.toString();
       }
 
-      end_date = localStorage.getString('end_date')!;
+      end_date = localStorage.getString('end_date');
       if (end_date == null) {
         DateTime date_now = DateTime.now();
         end_date = date_now.toString();
@@ -197,6 +199,40 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Menu Laku',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            ListView.builder(
+              physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: salesInvoiceItem.length,
+              itemBuilder: (BuildContext context, int index) {
+                return makeCardSales(context, index);
+                // return const Text("tes");
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Pengeluaran',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            ListView.builder(
+              physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: data_expenditure.length,
+              itemBuilder: (BuildContext context, int index) {
+                return makeCardExpenditure(context, index);
+                // return const Text("tes");
+              },
+            ),
           ],
         ),
       ),
@@ -220,8 +256,36 @@ class _ReportScreenState extends State<ReportScreen> {
       expenditure_total = body['expenditure_total'];
       sales_subtotal = body['sales_subtotal'];
       profit = body['profit'];
+      salesInvoiceItem = body['data_sales_item'];
+      data_expenditure = body['data_expenditure'];
     });
-    print(data);
+    print(body);
+  }
+
+  Widget makeCardExpenditure(BuildContext context, int index) {
+    return Container(
+      child: ListTile(
+        leading: Text(data_expenditure[index]['expenditure_remark'].toString()),
+        trailing: Text(
+          CurrencyFormat.convertToIdr(
+              data_expenditure[index]['expenditure_amount'], 0),
+        ),
+      ),
+    );
+  }
+
+  Widget makeCardSales(BuildContext context, int index) {
+    return Container(
+      child: ListTile(
+        leading: Text(salesInvoiceItem[index]['item_name'] +
+            ' x ' +
+            salesInvoiceItem[index]['subtotal_item'].toString()),
+        trailing: Text(
+          CurrencyFormat.convertToIdr(
+              salesInvoiceItem[index]['subtotal_amount'], 0),
+        ),
+      ),
+    );
   }
 }
 

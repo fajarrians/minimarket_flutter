@@ -3,6 +3,7 @@ import 'package:minimarket/screens/account/account.dart';
 import 'package:minimarket/screens/dashboard.dart';
 import 'package:minimarket/screens/report.dart';
 import 'package:minimarket/theme/color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -20,10 +21,33 @@ class _BottomNavState extends State<BottomNav> {
     AccountScreen(),
   ];
 
-  void _changeSelectedNavBar(int index) {
+  @override
+  void initState() {
+    super.initState();
+    _changeSelectedNavBar();
+  }
+
+  _changeSelectedNavBar() async {
+    final localStorage = await SharedPreferences.getInstance();
+    setState(() {
+      String temp = localStorage.getString('index')!;
+      _selectedNavbar = int.parse(temp);
+      // _selectedNavbar = index;
+    });
+  }
+
+  void _onItemTapped(int index) {
     setState(() {
       _selectedNavbar = index;
+      setIndex(index.toString());
     });
+  }
+
+  setIndex(String index) async {
+    final localStorage = await SharedPreferences.getInstance();
+
+    await localStorage.setString('index', index);
+    _changeSelectedNavBar();
   }
 
   @override
@@ -50,7 +74,7 @@ class _BottomNavState extends State<BottomNav> {
         unselectedItemColor: ThemeColors().textGrey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        onTap: _changeSelectedNavBar,
+        onTap: _onItemTapped,
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:minimarket/layouts/bottomNav.dart';
 import 'package:minimarket/network/api.dart';
+import 'package:minimarket/screens/change_password.dart';
 import 'package:minimarket/screens/login.dart';
 import 'package:minimarket/theme/color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,6 +54,25 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
+              SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChangePasswordScreen()));
+                  },
+                  child: Text('Ubah Password'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ThemeColors().backgroundBlue,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               SizedBox(
                 height: 40,
                 width: double.infinity,
