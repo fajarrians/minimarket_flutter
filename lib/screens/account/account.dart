@@ -107,6 +107,9 @@ class _AccountScreenState extends State<AccountScreen> {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.remove('data');
       localStorage.remove('token');
+      localStorage.remove('index');
+      localStorage.remove('start_date');
+      localStorage.remove('end_date');
       Navigator.pushReplacement(
           this.context, MaterialPageRoute(builder: (context) => LoginScreen()));
     }

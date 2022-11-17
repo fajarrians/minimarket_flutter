@@ -28,7 +28,7 @@ class _BottomNavState extends State<BottomNav> {
   }
 
   _changeSelectedNavBar() async {
-    final localStorage = await SharedPreferences.getInstance();
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
     setState(() {
       String temp = localStorage.getString('index')!;
       _selectedNavbar = int.parse(temp);
@@ -44,9 +44,9 @@ class _BottomNavState extends State<BottomNav> {
   }
 
   setIndex(String index) async {
-    final localStorage = await SharedPreferences.getInstance();
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
 
-    await localStorage.setString('index', index);
+    localStorage.setString('index', index);
     _changeSelectedNavBar();
   }
 

@@ -259,7 +259,6 @@ class _ReportScreenState extends State<ReportScreen> {
       salesInvoiceItem = body['data_sales_item'];
       data_expenditure = body['data_expenditure'];
     });
-    print(body);
   }
 
   Widget makeCardExpenditure(BuildContext context, int index) {

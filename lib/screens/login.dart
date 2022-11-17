@@ -188,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', json.encode(body['token']));
       localStorage.setString('data', json.encode(body['data']));
-      Navigator.push(
+      Navigator.pushReplacement(
         this.context,
         new MaterialPageRoute(builder: (context) => BottomNav()),
       );
