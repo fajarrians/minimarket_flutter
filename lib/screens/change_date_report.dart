@@ -79,6 +79,7 @@ class _ChangeDateReportScreenState extends State<ChangeDateReportScreen> {
           child: Column(
             children: [
               TextFormField(
+                autofocus: false,
                 controller: startDateController,
                 decoration: InputDecoration(
                     icon: Icon(Icons.date_range_rounded), //icon of text field
@@ -115,6 +116,7 @@ class _ChangeDateReportScreenState extends State<ChangeDateReportScreen> {
                 height: 10,
               ),
               TextFormField(
+                autofocus: false,
                 controller: endDateController,
                 decoration: InputDecoration(
                     icon: Icon(Icons.date_range_rounded), //icon of text field

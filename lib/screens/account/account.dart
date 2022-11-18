@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:minimarket/layouts/bottomNav.dart';
 import 'package:minimarket/network/api.dart';
 import 'package:minimarket/screens/change_password.dart';
 import 'package:minimarket/screens/login.dart';
@@ -41,60 +40,99 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
+          elevation: 0,
           title: Text(
             'Akun',
             style: TextStyle(
-              color: ThemeColors().textWhite,
-            ),
+                color: ColorPalette().black, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: ThemeColors().backgroundBlue,
+          backgroundColor: ColorPalette().white,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 40,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ChangePasswordScreen()));
-                  },
-                  child: Text('Ubah Password'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ThemeColors().backgroundBlue,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorPalette().purple,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromARGB(38, 0, 0, 0),
+                        spreadRadius: 1,
+                        blurRadius: 6,
+                        offset: Offset(2, 3),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(25),
                   ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 40,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    logout();
-                  },
-                  child: _isLoading
-                      ? SizedBox(
-                          child: CircularProgressIndicator(
-                            color: ThemeColors().textWhite,
+                  height: 150,
+                  width: double.infinity,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo09.png',
+                          height: 70,
+                          width: 70,
+                        ),
+                        Text(
+                          'Minimarket',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 34,
+                            color: ColorPalette().white,
                           ),
-                          height: 18,
-                          width: 18,
-                        )
-                      : Text('Logout'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ThemeColors().backgroundBlue,
+                        ),
+                      ]),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ChangePasswordScreen()));
+                    },
+                    child: Text('Ubah Password'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorPalette().purple,
+                    ),
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      logout();
+                    },
+                    child: _isLoading
+                        ? SizedBox(
+                            child: CircularProgressIndicator(
+                              color: ThemeColors().textWhite,
+                            ),
+                            height: 18,
+                            width: 18,
+                          )
+                        : Text('Logout'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorPalette().purple,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ));
   }
@@ -110,8 +148,8 @@ class _AccountScreenState extends State<AccountScreen> {
       localStorage.remove('index');
       localStorage.remove('start_date');
       localStorage.remove('end_date');
-      Navigator.pushReplacement(
-          this.context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.pushReplacement(this.context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
     }
   }
 }

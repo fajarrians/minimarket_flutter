@@ -60,30 +60,31 @@ class _ReportScreenState extends State<ReportScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        elevation: 0,
         title: Text(
           'Laporan Keuangan',
           style: TextStyle(
-            color: ThemeColors().textWhite,
+            color: ColorPalette().black,
+            fontWeight: FontWeight.w900,
           ),
         ),
-        backgroundColor: ThemeColors().backgroundBlue,
+        backgroundColor: ColorPalette().white,
         actions: [
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChangeDateReportScreen(),
+                  builder: (context) => const ChangeDateReportScreen(),
                 ),
               );
             },
-            icon: Icon(Icons.date_range_rounded),
+            icon: const Icon(Icons.date_range_rounded),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Container(
@@ -96,7 +97,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 style: TextStyle(color: ThemeColors().textBlack),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -109,43 +110,43 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
               ),
               child: ListTile(
-                leading: Text('Penjualan'),
+                leading: const Text('Penjualan'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(sales_subtotal, 0),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Text('Tunai'),
+                leading: const Text('Tunai'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(sales_cash_subtotal, 0),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Text('Gopay'),
+                leading: const Text('Gopay'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(sales_gopay_subtotal, 0),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Text('Ovo'),
+                leading: const Text('Ovo'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(sales_ovo_subtotal, 0),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Text('ShopeePay'),
+                leading: const Text('ShopeePay'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(sales_shopeepay_subtotal, 0),
                 ),
@@ -161,7 +162,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
               ),
               child: ListTile(
-                leading: Text('Diskon'),
+                leading: const Text('Diskon'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(discount_total, 0),
                 ),
@@ -177,7 +178,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
               ),
               child: ListTile(
-                leading: Text('Pengeluaran'),
+                leading: const Text('Pengeluaran'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(expenditure_total, 0),
                 ),
@@ -193,21 +194,21 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
               ),
               child: ListTile(
-                leading: Text('Laba'),
+                leading: const Text('Laba'),
                 trailing: Text(
                   CurrencyFormat.convertToIdr(profit, 0),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Menu Laku',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             ListView.builder(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: salesInvoiceItem.length,
@@ -216,15 +217,15 @@ class _ReportScreenState extends State<ReportScreen> {
                 // return const Text("tes");
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Pengeluaran',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             ListView.builder(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: data_expenditure.length,
@@ -264,7 +265,7 @@ class _ReportScreenState extends State<ReportScreen> {
   Widget makeCardExpenditure(BuildContext context, int index) {
     return Container(
       child: ListTile(
-        leading: Text(data_expenditure[index]['expenditure_remark'].toString()),
+        title: Text(data_expenditure[index]['expenditure_remark'].toString()),
         trailing: Text(
           CurrencyFormat.convertToIdr(
               data_expenditure[index]['expenditure_amount'], 0),
@@ -276,7 +277,7 @@ class _ReportScreenState extends State<ReportScreen> {
   Widget makeCardSales(BuildContext context, int index) {
     return Container(
       child: ListTile(
-        leading: Text(salesInvoiceItem[index]['item_name'] +
+        title: Text(salesInvoiceItem[index]['item_name'] +
             ' x ' +
             salesInvoiceItem[index]['subtotal_item'].toString()),
         trailing: Text(

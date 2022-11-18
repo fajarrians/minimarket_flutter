@@ -63,7 +63,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         },
       ),
     );
-    ScaffoldMessenger.of(this.context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -84,7 +84,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,12 +94,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               child: Column(
                 children: [
                   TextFormField(
+                    autofocus: false,
                     obscureText: _secureTextOld,
                     enableSuggestions: false,
                     autocorrect: false,
                     controller: old_password,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: 'Password Lama',
                       hintText: 'Masukkan password lama',
                       suffixIcon: IconButton(
@@ -117,16 +118,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
+                    autofocus: false,
                     obscureText: _secureTextNew,
                     enableSuggestions: false,
                     autocorrect: false,
                     controller: new_password,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: 'Password Baru',
                       hintText: 'Masukkan password baru',
                       suffixIcon: IconButton(
@@ -144,7 +146,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   SizedBox(
@@ -202,7 +204,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
     if (body['statusCode'] == 201) {
       Future.delayed(
-          Duration(seconds: 2),
+          const Duration(seconds: 2),
           () => [
                 Navigator.push(
                   context,
@@ -214,7 +216,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ]);
     } else {
       Future.delayed(
-          Duration(seconds: 2),
+          const Duration(seconds: 2),
           () => [
                 _showMsg(body['message']),
                 setState(() {

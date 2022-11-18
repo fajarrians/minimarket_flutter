@@ -60,83 +60,147 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        elevation: 0,
         title: Text(
           'Beranda',
           style: TextStyle(
-            color: ThemeColors().textWhite,
-          ),
+              color: ColorPalette().black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: ThemeColors().backgroundBlue,
+        backgroundColor: ColorPalette().white,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(15),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
-                'Grafik Barang Laku',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
               Container(
-                child: SfCircularChart(
-                  legend: Legend(
-                    isVisible: true,
-                    overflowMode: LegendItemOverflowMode.wrap,
-                    position: LegendPosition.bottom,
-                  ),
-                  tooltipBehavior: _tooltipBehavior,
-                  series: <CircularSeries<ChartItems, String>>[
-                    PieSeries<ChartItems, String>(
-                      dataSource: chartDataItems,
-                      xValueMapper: (ChartItems sales, _) => sales.item_name,
-                      yValueMapper: (ChartItems sales, _) => sales.total,
-                      enableTooltip: true,
-                    ),
+                decoration: BoxDecoration(
+                  color: ColorPalette().white,
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Color.fromARGB(38, 0, 0, 0),
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: Offset(2, 3),
+                    )
                   ],
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(children: [
+                    Text(
+                      'Grafik Barang Laku',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                    ),
+                    Container(
+                      child: SfCircularChart(
+                        legend: Legend(
+                          isVisible: true,
+                          overflowMode: LegendItemOverflowMode.wrap,
+                          position: LegendPosition.bottom,
+                        ),
+                        tooltipBehavior: _tooltipBehavior,
+                        series: <CircularSeries<ChartItems, String>>[
+                          PieSeries<ChartItems, String>(
+                            dataSource: chartDataItems,
+                            xValueMapper: (ChartItems sales, _) =>
+                                sales.item_name,
+                            yValueMapper: (ChartItems sales, _) => sales.total,
+                            enableTooltip: true,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
-                'Grafik Penjualan Bulanan',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
               Container(
-                child: SfCartesianChart(
-                  zoomPanBehavior: _zoomPanBehavior,
-                  primaryXAxis: CategoryAxis(),
-                  series: <ColumnSeries<ChartMonthly, String>>[
-                    ColumnSeries<ChartMonthly, String>(
-                      dataSource: chartDataMonthly,
-                      xValueMapper: (ChartMonthly sales, _) => sales.month,
-                      yValueMapper: (ChartMonthly sales, _) => sales.total,
-                    ),
+                decoration: BoxDecoration(
+                  color: ColorPalette().white,
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Color.fromARGB(38, 0, 0, 0),
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: Offset(2, 3),
+                    )
                   ],
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(children: [
+                    const Text(
+                      'Grafik Penjualan Bulanan',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                    ),
+                    Container(
+                      child: SfCartesianChart(
+                        zoomPanBehavior: _zoomPanBehavior,
+                        primaryXAxis: CategoryAxis(),
+                        series: <ColumnSeries<ChartMonthly, String>>[
+                          ColumnSeries<ChartMonthly, String>(
+                            color: ColorPalette().green,
+                            dataSource: chartDataMonthly,
+                            xValueMapper: (ChartMonthly sales, _) =>
+                                sales.month,
+                            yValueMapper: (ChartMonthly sales, _) =>
+                                sales.total,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
-                'Grafik Penjualan Mingguan',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
               Container(
-                child: SfCartesianChart(
-                  primaryXAxis: CategoryAxis(),
-                  series: <ColumnSeries<ChartWeekly, String>>[
-                    ColumnSeries<ChartWeekly, String>(
-                      dataSource: chartDataWeekly,
-                      xValueMapper: (ChartWeekly sales, _) => sales.day,
-                      yValueMapper: (ChartWeekly sales, _) => sales.total,
-                    ),
+                decoration: BoxDecoration(
+                  color: ColorPalette().white,
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Color.fromARGB(38, 0, 0, 0),
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: Offset(2, 3),
+                    )
                   ],
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(children: [
+                    const Text(
+                      'Grafik Penjualan Mingguan',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                    ),
+                    Container(
+                      child: SfCartesianChart(
+                        primaryXAxis: CategoryAxis(),
+                        series: <ColumnSeries<ChartWeekly, String>>[
+                          ColumnSeries<ChartWeekly, String>(
+                            color: ColorPalette().green,
+                            dataSource: chartDataWeekly,
+                            xValueMapper: (ChartWeekly sales, _) => sales.day,
+                            yValueMapper: (ChartWeekly sales, _) => sales.total,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
                 ),
               ),
             ],

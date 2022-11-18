@@ -19,6 +19,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var dataUser;
+  var redirect;
 
   @override
   void initState() {
@@ -31,11 +32,12 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       dataUser = localStorage.getString('data');
       if (dataUser == null) {
-        dataUser = LoginScreen();
+        redirect = const LoginScreen();
       } else {
-        dataUser = BottomNav();
+        redirect = const BottomNav();
       }
     });
+    print(dataUser);
   }
 
   @override
@@ -45,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       debugShowCheckedModeBanner: false,
-      home: dataUser,
+      home: redirect,
     );
   }
 }
